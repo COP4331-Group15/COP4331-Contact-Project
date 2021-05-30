@@ -110,6 +110,13 @@ function doGetContact()
 	// Get the information from the URL
 	var queryString = window.location.search;
 	var urlParams = new URLSearchParams(queryString);
+
+	if(!urlParams.has('id')) {
+		// The page is missing a key ID. Send the user to the search page
+		window.location.href = "search.html";
+		return;
+	}
+
 	var targetID = urlParams.get['id'];
 
 	var payload = {
@@ -129,7 +136,6 @@ function doGetContact()
 			if(jsonResponse.error.length > 0) {
 				// Error in the process.
 				console.log(jsonResponse.error);
-				window.location.href = "index.html";
 				return;
 			}
 
