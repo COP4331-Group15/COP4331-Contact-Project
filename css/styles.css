@@ -19,9 +19,8 @@ p {
 }
 
 label{
-  width:70px;
+  width: fit-content;
   display: inline-block;
-
 }
 
 .topnav {
