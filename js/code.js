@@ -123,7 +123,7 @@ function doGetContact()
 		"ID": targetID
 	};
 
-	var url = urlBase + '/search_contacts.' + extension;
+	var url = urlBase + '/get_contact.' + extension;
 
 	// Get relevant data from server
 	var xhr = new XMLHttpRequest();
