@@ -117,13 +117,11 @@ function doGetContact()
 		return;
 	}
 
-	var targetID = urlParams.get['id'];
+	var targetID = urlParams.get('id');
 
 	var payload = {
 		"ID": targetID
 	};
-
-	console.log(JSON.stringify(payload));
 
 	var url = urlBase + '/search_contacts.' + extension;
 
