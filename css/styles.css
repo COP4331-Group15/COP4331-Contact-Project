@@ -15,7 +15,11 @@ body {
 }
 
 p {
-  color: black;
+  color: white;
+}
+
+td {
+  color: white;
 }
 
 label{
@@ -63,4 +67,5 @@ label{
   background-color: rgba(16, 16, 16, 0.7);
   border-radius: 10px;
   height: 100%;
+  
 }
