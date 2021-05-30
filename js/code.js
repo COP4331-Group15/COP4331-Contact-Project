@@ -123,6 +123,8 @@ function doGetContact()
 		"ID": targetID
 	};
 
+	console.log(JSON.stringify(payload));
+
 	var url = urlBase + '/search_contacts.' + extension;
 
 	// Get relevant data from server
