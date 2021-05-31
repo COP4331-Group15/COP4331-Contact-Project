@@ -204,7 +204,7 @@ function doGetRelevantContacts() {
 				resultsHTML += formatContactResult(result);
 			}
 
-			if(results.length < 0) {
+			if(results.length <= 0) {
 				// Display "no results" message
 				document.getElementById("results-table").innerHTML = `
 					<tr>
