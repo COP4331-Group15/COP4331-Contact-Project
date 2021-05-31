@@ -28,7 +28,7 @@
 
 		//incase of empty result set, return no results, otherwise return data
 		if ($searchCount == 0) {
-			returnWithError("No results found.");
+			returnWithInfo(json_encode([]));
 		} else {
 			returnWithInfo(json_encode($searchResults));
 		}
