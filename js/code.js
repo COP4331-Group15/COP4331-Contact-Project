@@ -11,62 +11,55 @@ var userData = {
  * Authentication-Relevant Code
  */
 
-function doSignup()
-{
-	
+function doSignup() {
+
 	var firstname = document.getElementById("firstname").value;
 	var lastname = document.getElementById("lastname").value;
 	var login = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
-	var hash = md5( password );
-	
+	var hash = md5(password);
 
-	var jsonPayload = '{"FirstName" : "' + firstname + '", "LastName" : "' + lastname + '", "Login" : "' +  login + '", "Password" : "' + hash + '"}';
+
+	var jsonPayload = '{"FirstName" : "' + firstname + '", "LastName" : "' + lastname + '", "Login" : "' + login + '", "Password" : "' + hash + '"}';
 	// var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
 	var url = urlBase + '/sign_up.' + extension;
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				var jsonObject = JSON.parse( xhr.responseText );
+	try {
+		xhr.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				var jsonObject = JSON.parse(xhr.responseText);
 
 				userData.userID = jsonObject.ID;
-		
-				if( userData.userID < 1 )
-				{		
+
+				if (userData.userID < 1) {
 					//document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
 					return;
 				}
-		
+
 				userData.firstName = jsonObject.FirstName; //test this with api from backend
 				userData.lastName = jsonObject.LastName;
 
 				saveCookie();
-				
+
 				window.location.href = "index.html";
 			}
 		};
 		xhr.send(jsonPayload);
 	}
-	catch(err)
-	{
+	catch (err) {
 		//document.getElementById("loginResult").innerHTML = err.message;
 	}
 
 }
 
-function doLogin()
-{	
+function doLogin() {
 	var login = document.getElementById("login").value;
 	var password = document.getElementById("password").value;
-	var hash = md5( password );
-	
+	var hash = md5(password);
+
 	document.getElementById("loginResult").innerHTML = "";
 
 	var jsonPayload = '{"Login" : "' + login + '", "Password" : "' + hash + '"}';
@@ -76,46 +69,40 @@ function doLogin()
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				var jsonObject = JSON.parse( xhr.responseText );
+	try {
+		xhr.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				var jsonObject = JSON.parse(xhr.responseText);
 				userData.userID = jsonObject.ID;
-		
-				if( userData.userID < 1 )
-				{		
+
+				if (userData.userID < 1) {
 					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
 					return;
 				}
-		
+
 				userData.firstName = jsonObject.FirstName; //test this with api from backend
 				userData.lastName = jsonObject.LastName;
 
 				saveCookie();
-				
+
 				window.location.href = "index.html";
-				
+
 			}
 		};
 		xhr.send(jsonPayload);
 	}
-	catch(err)
-	{
+	catch (err) {
 		document.getElementById("loginResult").innerHTML = err.message;
 	}
 
 }
 
-function doLogout()
-{
+function doLogout() {
 	userData.userID = -1;
 	userData.firstName = "";
 	userData.lastName = "";
 	document.cookie = "userData= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-	
+
 	window.location.href = "index.html";
 }
 
@@ -123,15 +110,14 @@ function doLogout()
  * Contact-specific functionality
  */
 
-function doGetContact() 
-{
+function doGetContact() {
 	// Get the information from the URL
 	var queryString = window.location.search;
 	var urlParams = new URLSearchParams(queryString);
 
-	if(!urlParams.has('id')) {
+	if (!urlParams.has('id')) {
 		// The page is missing a key ID. Send the user to the search page
-		window.location.href = "search.html";
+		window.location.href = "homepage.html";
 		return;
 	}
 
@@ -148,10 +134,10 @@ function doGetContact()
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	xhr.onreadystatechange = function () {
-		if(this.readyState == 4 && this.status == 200) {
+		if (this.readyState == 4 && this.status == 200) {
 			var jsonResponse = JSON.parse(this.responseText);
 
-			if(jsonResponse.error.length > 0) {
+			if (jsonResponse.error.length > 0) {
 				// Error in the process.
 				console.log(jsonResponse.error);
 				return;
@@ -179,16 +165,16 @@ function doGetRelevantContacts() {
 	}
 
 	var url = urlBase + "/search_contacts." + extension;
-	
+
 	// Get relevant data from server
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	xhr.onreadystatechange = function () {
-		if(this.readyState == 4 && this.status == 200) {
+		if (this.readyState == 4 && this.status == 200) {
 			var jsonResponse = JSON.parse(this.responseText);
 
-			if(jsonResponse.error.length > 0) {
+			if (jsonResponse.error.length > 0) {
 				// Error in the process.
 				console.log(jsonResponse.error);
 				return;
@@ -198,13 +184,13 @@ function doGetRelevantContacts() {
 			var results = jsonResponse.results;
 			var resultsHTML = "";
 
-			for(var i in results) {
+			for (var i in results) {
 				// Create & format a result contact
 				// Append to the results string
 				resultsHTML += formatContactResult(results[i]);
 			}
 
-			if(results.length <= 0) {
+			if (results.length <= 0) {
 				// Display "no results" message
 				document.getElementById("results-table").innerHTML = `
 					<tr>
@@ -249,12 +235,58 @@ function formatContactResult(contact) {
 	return html;
 }
 
+function addContact() {
+
+	const inputFirstName = document.getElementById("input-firstname");
+	const inputLastName = document.getElementById("input-lastname");
+	const inputEmail = document.getElementById("input-email");
+	const inputPhone = document.getElementById("input-phone");
+	const inputAddress = document.getElementById("input-address");
+
+	var payload = {
+		"FirstName": inputFirstName.value,
+		"LastName": inputLastName.value,
+		"Email": inputEmail.value,
+		"PhoneNumber": inputPhone.value,
+		"Address": inputAddress.value
+	};
+
+	var url = urlBase + '/create_contact.' + extension;
+
+	// Get relevant data from server
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	xhr.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			var jsonResponse = JSON.parse(this.responseText);
+
+			if (jsonResponse.error.length > 0) {
+				// Error in the process.
+				console.log(jsonResponse.error);
+				document.getElementById("newContactResult").innerText = jsonResponse.error;
+				return;
+			}
+
+			// The process succeeded. Inform the user, clear input
+			document.getElementById("newContactResult").innerText = "Successfully added contact " + jsonResponse.ID;
+			inputFirstName.value = "";
+			inputLastName.value = "";
+			inputEmail.value = "";
+			inputPhone.value = "";
+			inputAddress.value = "";
+		}
+	}
+
+	xhr.send(JSON.stringify(payload));
+}
+
 function doIndexRedirect() {
 	// We need to get our user data
 	readCookie();
 
 	// If we are logged in, go to the homepage.
-	if(userData.userID > 0) {
+	if (userData.userID > 0) {
 		window.location.href = "homepage.html";
 	} else {
 		// If not, go to signup.
@@ -262,35 +294,33 @@ function doIndexRedirect() {
 	}
 }
 
-function saveCookie()
-{
+function saveCookie() {
 	var minutes = 20;
 	var date = new Date();
-	date.setTime(date.getTime()+(minutes*60*1000));	
-	
+	date.setTime(date.getTime() + (minutes * 60 * 1000));
+
 	payload = encodeURIComponent(JSON.stringify(userData));
 	document.cookie = "userData=" + payload + ";expires=" + date.toGMTString();;
 }
 
-function readCookie()
-{
+function readCookie() {
 	var allCookies = document.cookie;
 	var split = allCookies.split(";");
 
 	var cookieData = "";
 
-	for(var i = 0; i < split.length; i++) {
+	for (var i = 0; i < split.length; i++) {
 		var cookiepair = split[i];
-		while(cookiepair.charAt(0) == ' ') {
+		while (cookiepair.charAt(0) == ' ') {
 			cookiepair = cookiepair.substring(1);
 		}
 
-		if(cookiepair.indexOf("userData=") == 0) {
+		if (cookiepair.indexOf("userData=") == 0) {
 			cookieData = cookiepair.substring("userData=".length, cookiepair.length);
 		}
 	}
 
-	if(cookieData.length <= 0) {
+	if (cookieData.length <= 0) {
 		// No data is loaded
 		window.location.href = "index.html";
 		return;
