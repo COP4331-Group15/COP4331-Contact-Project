@@ -248,7 +248,8 @@ function addContact() {
 		"LastName": inputLastName.value,
 		"Email": inputEmail.value,
 		"PhoneNumber": inputPhone.value,
-		"Address": inputAddress.value
+		"Address": inputAddress.value,
+		"UserID": userData.userID
 	};
 
 	var url = urlBase + '/create_contact.' + extension;
