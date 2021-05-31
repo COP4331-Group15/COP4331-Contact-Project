@@ -7,6 +7,10 @@ var userData = {
 	lastName: ""
 }
 
+/*
+ * Authentication-Relevant Code
+ */
+
 function doSignup()
 {
 	
@@ -105,6 +109,20 @@ function doLogin()
 
 }
 
+function doLogout()
+{
+	userData.userID = -1;
+	userData.firstName = "";
+	userData.lastName = "";
+	document.cookie = "userData= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+	
+	window.location.href = "index.html";
+}
+
+/*
+ * Contact-specific functionality
+ */
+
 function doGetContact() 
 {
 	// Get the information from the URL
@@ -149,6 +167,86 @@ function doGetContact()
 	}
 
 	xhr.send(JSON.stringify(payload));
+}
+
+function doGetRelevantContacts() {
+	// Get our search value
+	var query = document.getElementById("searchbox").value ?? "";
+
+	var payload = {
+		"query": query,
+		"userID": userData.userID ?? 0
+	}
+
+	var url = urlBase + "/search_contacts." + extension;
+	
+	// Get relevant data from server
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	xhr.onreadystatechange = function () {
+		if(this.readyState == 4 && this.status == 200) {
+			var jsonResponse = JSON.parse(this.responseText);
+
+			if(jsonResponse.error.length > 0) {
+				// Error in the process.
+				console.log(jsonResponse.error);
+				return;
+			}
+
+			// Get all results from the response
+			var results = jsonResponse.results;
+			var resultsHTML = "";
+
+			for(var result in results) {
+				// Create & format a result contact
+				// Append to the results string
+				resultsHTML += formatContactResult(result);
+			}
+
+			if(results.length < 0) {
+				// Display "no results" message
+				document.getElementById("results-table").innerHTML = `
+					<tr>
+						<td><h2>No Results</h2></td>
+					</tr>
+				`;
+			} else {
+				document.getElementById("results-table").innerHTML = resultsHTML;
+			}
+
+		}
+	}
+
+	xhr.send(JSON.stringify(payload));
+}
+
+function formatContactResult(contact) {
+	var html = `
+		<tr>
+			<td>
+				<h4>${contact.FirstName ?? "Example"} ${contact.LastName ?? "Contact"}</h4>
+				
+				<address>
+					<strong>E-mail: ${contact.Email ?? "ExampleContact@Example.com"}</strong>
+					<br>Phone Number: ${contact.PhoneNumber ?? "+1 (407) 555-555"}
+					<br>${contact.Address ?? "42 Wallaby Way Sydney"}
+				</address>
+					
+			</td>
+			<td>
+				<div>
+					<a href="editContact.html?id=${contact.ID ?? -1}" class="btn btn-light btn-xs" title="Edit">
+						<i><img src="images/pencil-square.svg" width="20" alt="pencil-square"/></i>
+					</a>
+					<a href="deleteContact.html?id=${contact.ID ?? -1}" class="btn btn-danger btn-xs" title="Delete">
+						<i><img src="images/person-x.svg" width="20" alt="person-x"/></i>
+					</a>
+				</div>
+			</td>
+		</tr>
+	`;
+	return html;
 }
 
 function doIndexRedirect() {
@@ -202,12 +300,4 @@ function readCookie()
 	//document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 }
 
-function doLogout()
-{
-	userData.userID = -1;
-	userData.firstName = "";
-	userData.lastName = "";
-	document.cookie = "userData= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-	
-	window.location.href = "index.html";
-}
+
