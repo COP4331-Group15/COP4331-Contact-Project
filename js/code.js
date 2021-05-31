@@ -198,10 +198,10 @@ function doGetRelevantContacts() {
 			var results = jsonResponse.results;
 			var resultsHTML = "";
 
-			for(var result in results) {
+			for(var i in results) {
 				// Create & format a result contact
 				// Append to the results string
-				resultsHTML += formatContactResult(result);
+				resultsHTML += formatContactResult(results[i]);
 			}
 
 			if(results.length <= 0) {
