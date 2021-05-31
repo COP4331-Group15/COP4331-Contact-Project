@@ -151,6 +151,19 @@ function doGetContact()
 	xhr.send(JSON.stringify(payload));
 }
 
+function doIndexRedirect() {
+	// We need to get our user data
+	readCookie();
+
+	// If we are logged in, go to the homepage.
+	if(userData.userID > 0) {
+		window.location.href = "homepage.html";
+	} else {
+		// If not, go to signup.
+		window.location.href = "login.html";
+	}
+}
+
 function saveCookie()
 {
 	var minutes = 20;
