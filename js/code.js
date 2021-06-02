@@ -202,6 +202,39 @@ function doGetContactForDelete() {
 	xhr.send(JSON.stringify(payload));
 }
 
+function doDeleteContact() {
+	// 1. Get the ID of the contact to delete
+	//    - In the URL
+	var queryString = window.location.search;
+	var urlParams = new URLSearchParams(queryString);
+	var targetID = urlParams.get('id');
+
+	var payload = {
+		"ID": targetID
+	}
+
+	var url = urlBase + '/delete_contact.' + extension;
+
+	// 2. Create the XMLHTTP request to delete the contact
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+
+	xhr.onreadystatechange = function () {
+		if(this.readyState == 4 && this.status == 200) {
+			var jsonResponse = JSON.parse(this.responseText);
+
+			if(jsonResponse.error.length > 0) {
+				// Something went wrong
+				document.getElementById("delete-error").innerText = jsonResponse.error;
+				return;
+			}
+
+			// 3. If it's all good, redirect to the home page
+			window.location.href = "/homepage.html";
+		}
+	}
+}
+
 function doGetRelevantContacts() {
 	// Get our search value
 	var query = document.getElementById("searchbox").value ?? "";
