@@ -233,6 +233,8 @@ function doDeleteContact() {
 			window.location.href = "/homepage.html";
 		}
 	}
+
+	xhr.send(JSON.stringify(payload));
 }
 
 function doGetRelevantContacts() {
