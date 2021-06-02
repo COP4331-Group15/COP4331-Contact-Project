@@ -28,7 +28,6 @@
       $stmt2->close();
       $conn->close();
       returnWithError("");
-      echo "\nContact deleted successfully.";
 		}
 		else
 		{
