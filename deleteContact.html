@@ -84,15 +84,17 @@
                 <p id="contact-address"></p>
             </div>
 
-            <a href="/homepage.html"><button class="button">Cancel</button></a>
+            <div class="col-12">
+                <a href="/homepage.html"><button class="button1">Cancel</button></a>
+                <button class="button2" onclick="doDeleteContact()">Delete</button>
+                <p id="delete-error"></p>
+            </div>
+            
 
-            <button class="button" onclick="doDeleteContact()">Delete</button>
-
-            <p id="delete-error"></p>
         </div>
-
-
     </div>
+
+
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
