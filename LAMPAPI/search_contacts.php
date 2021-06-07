@@ -14,7 +14,7 @@
 		returnWithError($conn->connect_error);
 	}
 
-	$stmt = $conn->prepare("SELECT * FROM Contacts WHERE CONCAT_WS(' ', FirstName, LastName) LIKE ? AND (UserID = ?) ");
+	$stmt = $conn->prepare("SELECT * FROM Contacts WHERE CONCAT_WS(' ', FirstName, LastName) LIKE ? AND (UserID = ?) ORDER BY LastName, FirstName");
 	$unifiedSearch = "%" . $inData["query"] . "%";
 	$stmt->bind_param("si", $unifiedSearch, $inData["userID"]);
 	$stmt->execute();
