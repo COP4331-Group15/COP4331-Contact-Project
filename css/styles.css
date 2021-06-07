@@ -15,9 +15,13 @@ body {
 }
 
 /* If your screen is greater than 1080p, have new big image */
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 3840px) {
   body {
     background: url("/images/bg1.jpg") no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
   }
 }
 
