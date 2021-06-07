@@ -460,47 +460,35 @@ function doGetContactForUpdate() {
 }
 
 
-function editContact() {
-
-	const inputFirstName = document.getElementById("input-firstname");
-	const inputLastName = document.getElementById("input-lastname");
-	const inputEmail = document.getElementById("input-email");
-	const inputPhone = document.getElementById("input-phone");
-	const inputAddress = document.getElementById("input-address");
+function doEditContact() {
+	// 1. Get the ID of the contact to update
+	//    - In the URL
+	var queryString = window.location.search;
+	var urlParams = new URLSearchParams(queryString);
+	var targetID = urlParams.get('id');
 
 	var payload = {
-		"FirstName": inputFirstName.value,
-		"LastName": inputLastName.value,
-		"Email": inputEmail.value,
-		"PhoneNumber": inputPhone.value,
-		"Address": inputAddress.value,
-		"UserID": userData.userID
-	};
+		"ID": targetID
+	}
 
 	var url = urlBase + '/update_contact.' + extension;
 
-	// Get relevant data from server
+	// 2. Create the XMLHTTP request to update the contact
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
 	xhr.onreadystatechange = function () {
-		if (this.readyState == 4 && this.status == 200) {
+		if(this.readyState == 4 && this.status == 200) {
 			var jsonResponse = JSON.parse(this.responseText);
 
-			if (jsonResponse.error.length > 0) {
-				// Error in the process.
-				console.log(jsonResponse.error);
-				document.getElementById("newContactResult").innerText = jsonResponse.error;
+			if(jsonResponse.error.length > 0) {
+				// Something went wrong
+				document.getElementById("delete-error").innerText = jsonResponse.error;
 				return;
 			}
 
-			// The process succeeded. Inform the user, clear input
-			document.getElementById("newContactResult").innerText = "Successfully added contact " + jsonResponse.ID;
-			inputFirstName.value = "";
-			inputLastName.value = "";
-			inputEmail.value = "";
-			inputPhone.value = "";
-			inputAddress.value = "";
+			// 3. If it's all good, redirect to the home page
+			window.location.href = "/homepage.html";
 		}
 	}
 
