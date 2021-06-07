@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <script type="text/javascript" src="js/md5.js"></script>
-	<script type="text/javascript" src="js/code.js"></script>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script type="text/javascript" src="js/code.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="css/styles.css" rel="stylesheet">
-    
+
     <title>Edit Contact</title>
-    
+
     <style>
         [class*="col-"] {
             padding: 1rem;
         }
     </style>
 </head>
+
 <body>
 
-    
+
 
     <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #e3f2fd;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><img src="images/icon.png" alt="" width="75" height="75"></a>
-            
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/login.html">Login</a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a class="nav-link active" href="/signup.html">Sign up for free</a>
                     </li>
@@ -47,48 +50,10 @@
     <div class="container">
 
         <br>
-        <h2>Edit Contact</h2><br>
-
-        <div class="row">
-            <div class="col-12">
-                <p>Are you sure you want to edit the contact below?</p>
-            </div>
-
-            <div class="col-6">
-                <label class="form-label">First Name:</label>
-                <p id="contact-firstName"></p>
-            </div>
-            
-
-            <div class="col-6">
-                <label class="form-label">Last Name:</label>
-                <p id="contact-lastName"></p>
-            </div>
-
-            <div class="col-6">
-                <label class="form-label">E-mail Address:</label>
-                <p id="contact-email"></p>
-            </div>
-
-            <div class="col-6">
-                <label class="form-label">Phone Number:</label>
-                <p id="contact-phone"></p>
-            </div>
-
-            <div class="col-12">
-                <label class="form-label">Address:</label>
-                <p id="contact-address"></p>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-
-        <br>
         <h2>Edit Contact</h2>
 
         <br>
-        <p>Please add the person's contact information that you would like to edit to your contact list</p><br>
+        <p>Please adjust the contact's information below</p><br>
 
         <h4>Contact Information</h4>
 
@@ -118,18 +83,16 @@
                 <input id="input-address" type="text" placeholder="42 Wallaby Way" name="phone" class="form-control">
             </div>
 
-            <div class="col-12">
-                <a href="/homepage.html"><button class="button1">Cancel</button></a>
-                <button class="button2" onclick="doEditContact()">Update</button>
+            <div class="col-12 d-flex flex-row justify-content-between">
+                <a href="/homepage.html"><button class="btn btn-secondary">Cancel</button></a>
                 <p id="delete-error"></p>
+                <button class="btn btn-primary" onclick="doEditContact()">Update</button>
             </div>
 
-   
         </div>
 
-
-
     </div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -146,6 +109,7 @@
     </script>
 
 
-    
+
 </body>
+
 </html>
