@@ -7,8 +7,11 @@ html, body {
 }
 
 body {
-  background-image: url("/images/bg1.jpg");
+  background: url("/images/bg1.jpg") no-repeat center center fixed;
   background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 }
 
 p {
@@ -104,4 +107,18 @@ label{
   background-color: #ba0000;
   color: white;
   size: 6;
+}
+
+a.navbar-brand {
+  filter: drop-shadow(2px 4px 6px black);
+  -webkit-filter: drop-shadow(2px 4px 6px black);
+}
+
+a.navbar-brand img {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
+
+#navbarResponsive li{
+  text-shadow: 2px 4px 6px black;
 }
