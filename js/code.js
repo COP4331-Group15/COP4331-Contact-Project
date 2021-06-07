@@ -293,21 +293,21 @@ function formatContactResult(contact) {
 	var html = `
 		<tr>
 			<td>
-				<h4>${contact.FirstName ?? "Example"} ${contact.LastName ?? "Contact"}</h4>
+				<h4>${contact.LastName ?? "Contact"}, ${contact.FirstName ?? "Example"}</h4>
 				
 				<address>
-					<strong>E-mail: ${contact.Email ?? "ExampleContact@Example.com"}</strong>
-					<br>Phone Number: ${contact.PhoneNumber ?? "+1 (407) 555-555"}
-					<br>${contact.Address ?? "42 Wallaby Way Sydney"}
+					<strong>📧: ${contact.Email ?? "ExampleContact@Example.com"}</strong>
+					<br>📱: ${contact.PhoneNumber ?? "+1 (407) 555-555"}
+					<br>🏠: ${contact.Address ?? "42 Wallaby Way Sydney"}
 				</address>
 					
 			</td>
 			<td>
-				<div>
-					<a href="editContact.html?id=${contact.ID ?? -1}" class="btn btn-light btn-xs" title="Edit">
+				<div class="d-flex flex-column justify-content-around align-items-end">
+					<a href="editContact.html?id=${contact.ID ?? -1}" class="btn btn-light btn-xs m-2" title="Edit">
 						<i><img src="images/pencil-square.svg" width="20" alt="pencil-square"/></i>
 					</a>
-					<a href="deleteContact.html?id=${contact.ID ?? -1}" class="btn btn-danger btn-xs" title="Delete">
+					<a href="deleteContact.html?id=${contact.ID ?? -1}" class="btn btn-danger btn-xs m-2" title="Delete">
 						<i><img src="images/person-x.svg" width="20" alt="person-x"/></i>
 					</a>
 				</div>
