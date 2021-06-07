@@ -7,11 +7,18 @@ html, body {
 }
 
 body {
-  background: url("/images/bg1.jpg") no-repeat center center fixed;
+  background: url("/images/bg1-small.jpg") no-repeat center center fixed;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+}
+
+/* If your screen is greater than 1080p, have new big image */
+@media only screen and (min-width: 1440px) {
+  body {
+    background: url("/images/bg1.jpg") no-repeat center center fixed;
+  }
 }
 
 p {
@@ -64,11 +71,15 @@ label{
 
 .container {
   margin-top: 10px;
-  background-color: rgba(16, 16, 16, 0.7);
+  margin-bottom: 50px;
+  background-color: rgb(16, 16, 16);
   border-radius: 10px;
   height: 100%;
+  opacity: 90%;
+  transform: translateZ(0);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
+  will-change: transform;
 }
 
 
@@ -121,4 +132,8 @@ a.navbar-brand img {
 
 #navbarResponsive li{
   text-shadow: 2px 4px 6px black;
+}
+
+#results-table {
+  table-layout: fixed;
 }
