@@ -527,11 +527,13 @@ function generateRandomContact() {
 		if(this.readyState == 4 && this.status == 200) {
 			var jsonResponse = JSON.parse(this.responseText);
 
-			document.getElementById("input-firstname").value = jsonResponse.name.first;
-			document.getElementById("input-lastname").value = jsonResponse.name.last;
-			document.getElementById("input-email").value = jsonResponse.email;
-			document.getElementById("input-phone").value = jsonResponse.phone;
-			document.getElementById("input-address").value = jsonResponse.location.street;
+			var userData = jsonResponse.results[0];
+
+			document.getElementById("input-firstname").value = userData.name.first;
+			document.getElementById("input-lastname").value = userData.name.last;
+			document.getElementById("input-email").value = userData.email;
+			document.getElementById("input-phone").value = userData.phone;
+			document.getElementById("input-address").value = userData.location.street;
 		}
 	}
 
