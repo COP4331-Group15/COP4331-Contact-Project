@@ -518,7 +518,7 @@ function doAddDevCheck() {
 
 function generateRandomContact() {
 	// Get a random name from api.namefake.com
-	const namefakeurl = "https://api.namefake.com/english-united-states";
+	const namefakeurl = "https://randomuser.me/api/";
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", namefakeurl, true);
@@ -527,14 +527,11 @@ function generateRandomContact() {
 		if(this.readyState == 4 && this.status == 200) {
 			var jsonResponse = JSON.parse(this.responseText);
 
-			var name = jsonResponse.name.split(" ");
-			var email = jsonResponse.email_u + "@" + jsonResponse.email_d;
-
-			document.getElementById("input-firstname").value = name[0];
-			document.getElementById("input-lastname").value = name[1];
-			document.getElementById("input-email").value = email;
-			document.getElementById("input-phone").value = jsonResponse.phone_w;
-			document.getElementById("input-address").value = jsonResponse.address;
+			document.getElementById("input-firstname").value = jsonResponse.name.first;
+			document.getElementById("input-lastname").value = jsonResponse.name.last;
+			document.getElementById("input-email").value = jsonResponse.email;
+			document.getElementById("input-phone").value = jsonResponse.phone;
+			document.getElementById("input-address").value = jsonResponse.location.street;
 		}
 	}
 
