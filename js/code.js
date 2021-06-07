@@ -293,7 +293,7 @@ function formatContactResult(contact) {
 	var html = `
 		<tr>
 			<td>
-				<h4>${contact.LastName ?? "Contact"}, ${contact.FirstName ?? "Example"}</h4>
+				<h3>${contact.LastName ?? "Contact"}, ${contact.FirstName ?? "Example"}</h3>
 				
 				<address>
 					<strong>📧: ${contact.Email ?? "ExampleContact@Example.com"}</strong>

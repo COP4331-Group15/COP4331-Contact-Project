@@ -29,7 +29,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #e3f2fd;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="images/icon.png" alt="" width="75" height="75"></a>
+            <a class="navbar-brand" href="/homepage.html"><img src="images/icon.png" alt="" width="75" height="75"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -45,19 +45,19 @@
                         <a class="nav-link" href="#" onclick="doLogout()">Signout</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input id="searchbox" onkeyup="doGetRelevantContacts()" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <!--<button class="btn btn-outline-success" type="submit">Search</button>-->
-                </form>
+                <div class="d-flex">
+                    <input id="searchbox" onkeyup="doGetRelevantContacts()" class="form-control me-2" type="search" placeholder="Live Search" aria-label="Live Search">
+                </div>
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <br><h2>Contact List</h2>
+        <br><h1 class="display-2">Your Contacts</h1>
+        <hr />
 
         <div class="panel panel-default">
-            <table class="table" id="results-table">
+            <table class="table table-borderless m-1" id="results-table">
                 <tr>
                     <td>
                         <h4>Contact 1</h4>
