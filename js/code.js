@@ -448,11 +448,11 @@ function doGetContactForUpdate() {
 			}
 
 			// We have contact information. Display on the webpage.
-			document.getElementById("input-firstname").innerText = jsonResponse.FirstName;
-			document.getElementById("input-lastname").innerText = jsonResponse.LastName;
-			document.getElementById("input-email").innerText = jsonResponse.Email;
-			document.getElementById("input-phone").innerText = jsonResponse.PhoneNumber;
-			document.getElementById("input-address").innerText = jsonResponse.Address;
+			document.getElementById("input-firstname").value = jsonResponse.FirstName;
+			document.getElementById("input-lastname").value = jsonResponse.LastName;
+			document.getElementById("input-email").value = jsonResponse.Email;
+			document.getElementById("input-phone").value = jsonResponse.PhoneNumber;
+			document.getElementById("input-address").value = jsonResponse.Address;
 		}
 	}
 
