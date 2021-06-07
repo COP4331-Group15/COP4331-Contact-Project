@@ -45,15 +45,18 @@
                         <a class="nav-link" href="#" onclick="doLogout()">Signout</a>
                     </li>
                 </ul>
-                <div class="d-flex">
-                    <input id="searchbox" onkeyup="doGetRelevantContacts()" class="form-control me-2" type="search" placeholder="Live Search" aria-label="Live Search">
-                </div>
+                
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <br><h1 class="display-2">Your Contacts</h1>
+        <br><h1 class="display-4">Your Contacts</h1>
+
+        <div class="d-flex justify-content-start align-items-stretch flex-column">
+            <input id="searchbox" onkeyup="doGetRelevantContacts()" class="form-control me-2" type="search" placeholder="Live Search" aria-label="Live Search">
+        </div>
+
         <hr />
 
         <div class="panel panel-default">
