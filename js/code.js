@@ -462,13 +462,24 @@ function doGetContactForUpdate() {
 
 function doEditContact() {
 	// 1. Get the ID of the contact to update
-	//    - In the URL
 	var queryString = window.location.search;
 	var urlParams = new URLSearchParams(queryString);
 	var targetID = urlParams.get('id');
 
+	// 2. Get the various parts of the contact
+	var firstname = document.getElementById("input-firstname").value;
+	var lastname = document.getElementById("input-lastname").value;
+	var email = document.getElementById("input-email").value;
+	var phone = document.getElementById("input-phone").value;
+	var address = document.getElementById("input-address").value;
+
 	var payload = {
-		"ID": targetID
+		"ID": targetID,
+		"FirstName": firstname,
+		"LastName": lastname,
+		"Email": email,
+		"PhoneNumber": phone,
+		"Address": address
 	}
 
 	var url = urlBase + '/update_contact.' + extension;
