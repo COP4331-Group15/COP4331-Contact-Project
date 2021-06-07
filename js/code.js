@@ -505,3 +505,38 @@ function doEditContact() {
 
 	xhr.send(JSON.stringify(payload));
 }
+
+function doAddDevCheck() {
+	// If we have "dev=true" in the URL
+	var queryString = window.location.search;
+	var urlParams = new URLSearchParams(queryString);
+	if(urlParams.has("dev")) {
+		// Make the random button appear
+		document.getElementById("dev-random-button").classList.remove("d-none");
+	}
+}
+
+function generateRandomContact() {
+	// Get a random name from api.namefake.com
+	const namefakeurl = "https://api.namefake.com/english-united-states";
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", namefakeurl, true);
+
+	xhr.onreadystatechange = function() {
+		if(this.readyState == 4 && this.status == 200) {
+			var jsonResponse = JSON.parse(this.responseText);
+
+			var name = jsonResponse.name.split(" ");
+			var email = jsonResponse.email_u + "@" + jsonResponse.email_d;
+
+			document.getElementById("input-firstname").value = name[0];
+			document.getElementById("input-lastname").value = name[1];
+			document.getElementById("input-email").value = email;
+			document.getElementById("input-phone").value = jsonResponse.phone_w;
+			document.getElementById("input-address").value = jsonResponse.address;
+		}
+	}
+
+	xhr.send();
+}

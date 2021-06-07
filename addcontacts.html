@@ -99,6 +99,7 @@
             </div>
 
             <div class="col-12 d-flex flex-row justify-content-between">
+                <button type="button" class="btn btn-warning d-none" onclick="generateRandomContact();" id="dev-random-button">Random Contact</button>
                 <span id="newContactResult"></span>
                 <button type="button" id="addContactButton" class="btn btn-primary" onclick="addContact();"> Create Contact
                 </button>
@@ -116,6 +117,10 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
+
+    <script>
+        doAddDevCheck();
+    </script>
 </body>
 
 </html>
