@@ -20,11 +20,10 @@
 	{
 		// Prepares and executes a mySQL statement that selects all contacts with a
 		// similar first and last name and the given userID
-		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE (FirstName LIKE ?) AND (LastName LIKE ?) AND (UserID = ?) ");
-		$FirstName = "%" . $inData["searchFirst"] . "%";
-		$LastName = "%" . $inData["searchLast"] . "%";
-		$stmt->bind_param("ssi", $FirstName, $LastName, $inData["userID"]);
-		$stmt->execute();
+	$stmt = $conn->prepare("SELECT * FROM Contacts WHERE CONCAT_WS(' ', FirstName, LastName) LIKE ? AND (UserID = ?) ORDER BY LastName, FirstName");
+	$unifiedSearch = "%" . $inData["query"] . "%";
+	$stmt->bind_param("si", $unifiedSearch, $inData["userID"]);
+	$stmt->execute();
 
 		if ($result = $stmt->get_result())
 		{
@@ -80,4 +79,3 @@
 		$retValue = '{"results": ' . $searchResults . ' ,"error":""}';
 		sendResultInfoAsJson($retValue);
 	}
-?>

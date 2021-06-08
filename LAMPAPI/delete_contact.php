@@ -2,7 +2,6 @@
 <?php
   // COP4331 Group 15, 6/7/2021
   // Creates an API endpoint that allows the user to delete stored contacts.
-
   $inData = getRequestInfo();
 
   // Takes in the users input ID for the contact to be deleted.
@@ -33,7 +32,6 @@
       $stmt2->close();
       $conn->close();
       returnWithError("");
-      echo "\nContact deleted successfully.";
 		}
 		else
 		{

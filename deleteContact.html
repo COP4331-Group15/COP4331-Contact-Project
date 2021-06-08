@@ -22,7 +22,8 @@
     <meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
-    <title>Add Contact</title>
+
+    <title>Delete</title>
 
     <style>
         [class*="col-"] {
@@ -30,6 +31,7 @@
         }
     </style>
 
+    <!-- Validate that this is an active/current user -->
     <script>
         readCookie();
         if (userData.userID == -1) {
@@ -48,10 +50,10 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/homepage.html">Home</a>
+                        <a class="nav-link" href="/homepage.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Add</a>
+                        <a class="nav-link" href="/addcontacts.html">Add</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="doLogout()">Signout</a>
@@ -65,47 +67,51 @@
     <div class="container">
 
         <br>
-        <h2>Add A Contact</h2>
-
-        <br>
-        <p>Please add the person's contact information that you would like to add to your contact list</p><br>
-
-        <h4>Contact Information</h4>
+        <h2>Delete Contact</h2><br>
 
         <div class="row">
+            <div class="col-12">
+                <p>Are you sure you want to delete the contact below?</p>
+            </div>
+
             <div class="col-6">
-                <label for="inputEmail4" class="form-label">First Name:</label>
-                <input id="input-firstname" type="text" class="form-control" placeholder="John" aria-label="First name">
+                <h4 class="form-label text-muted">First Name:</h4>
+                <h3 id="contact-firstName" class="text-light"></h3>
+            </div>
+            
+
+            <div class="col-6">
+                <h4 class="form-label text-muted">Last Name:</h4>
+                <h3 id="contact-lastName" class="text-light"></h3>
             </div>
 
             <div class="col-6">
-                <label class="form-label">Last Name:</label>
-                <input id="input-lastname" type="text" class="form-control" placeholder="Doe" aria-label="Last name">
+                <h4 class="form-label text-muted">E-mail Address:</h4>
+                <h3 id="contact-email" class="text-light"></h3>
+            </div>
+
+            <div class="col-6">
+                <h4 class="form-label text-muted">Phone Number:</h4>
+                <h3 id="contact-phone" class="text-light"></h3>
             </div>
 
             <div class="col-12">
-                <label class="form-label">E-mail Address:</label>
-                <input id="input-email" type="text" placeholder="JohnDoe@gmail.com" name="email" class="form-control">
-            </div>
-
-            <div class="col-12">
-                <label class="form-label">Phone Number:</label>
-                <input id="input-phone" type="text" placeholder="(407)-123-4567" name="phone" class="form-control">
-            </div>
-
-            <div class="col-12">
-                <label class="form-label">Address:</label>
-                <input id="input-address" type="text" placeholder="42 Wallaby Way" name="phone" class="form-control">
+                <h4 class="form-label text-muted">Address:</h4>
+                <h3 id="contact-address" class="text-light"></h3>
             </div>
 
             <div class="col-12 d-flex flex-row justify-content-between">
-                <button type="button" class="btn btn-warning d-none" onclick="generateRandomContact();" id="dev-random-button">Random Contact</button>
-                <span id="newContactResult"></span>
-                <button type="button" id="addContactButton" class="btn btn-primary" onclick="addContact();"> Create Contact
-                </button>
+                <a href="/homepage.html"><button class="btn btn-secondary">Cancel</button></a>
+                <p id="delete-error"></p>
+                <button class="btn btn-danger" onclick="doDeleteContact()">Delete</button>
             </div>
+            
+
         </div>
     </div>
+
+
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -119,8 +125,9 @@
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
 
     <script>
-        doAddDevCheck();
+        doGetContactForDelete();
     </script>
+
 </body>
 
 </html>

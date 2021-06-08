@@ -2,20 +2,35 @@
 
 html, body {
   font-family: 'poppins', sans-serif;
-  font: 14px sans-serif;
+  font-size: 14px;
   color: rgb(201, 201, 201);
 }
 
 body {
-  height: 100%;
-  width: 100%;
-  background-color: gray;
-  padding: 2px;
-  background-image: url("/images/bg1.jpg");
+  background: url("/images/bg1-small.jpg") no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+/* If your screen is greater than 1080p, have new big image */
+@media only screen and (min-width: 3840px) {
+  body {
+    background: url("/images/bg1.jpg") no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+  }
 }
 
 p {
-  color: black;
+  color: white;
+}
+
+td {
+  color: white;
 }
 
 label{
@@ -60,7 +75,69 @@ label{
 
 .container {
   margin-top: 10px;
-  background-color: rgba(16, 16, 16, 0.7);
+  margin-bottom: 50px;
+  background-color: rgb(16, 16, 16);
   border-radius: 10px;
   height: 100%;
+  opacity: 90%;
+  transform: translateZ(0);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  will-change: transform;
+}
+
+
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+  margin: 14px 2px;
+  cursor: pointer;
+}
+
+
+.button1 {
+  background-color: #45da4d; 
+  color: black; 
+  border: 2px solid #000000;
+}
+
+.button1:hover {
+  background-color: #288d1b;
+  color: white;
+  size: 6;
+}
+
+.button2 {
+  background-color: #f33636; 
+  color: black; 
+  border: 2px solid #000000;
+}
+
+.button2:hover {
+  background-color: #ba0000;
+  color: white;
+  size: 6;
+}
+
+a.navbar-brand {
+  filter: drop-shadow(2px 4px 6px black);
+  -webkit-filter: drop-shadow(2px 4px 6px black);
+}
+
+a.navbar-brand img {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
+
+#navbarResponsive li{
+  text-shadow: 2px 4px 6px black;
+}
+
+#results-table {
+  table-layout: fixed;
 }

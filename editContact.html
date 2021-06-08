@@ -22,23 +22,17 @@
     <meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
-    <title>Add Contact</title>
+    <title>Edit Contact</title>
 
     <style>
         [class*="col-"] {
             padding: 1rem;
         }
     </style>
-
-    <script>
-        readCookie();
-        if (userData.userID == -1) {
-            window.location.href = "login.html";
-        }
-    </script>
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container-fluid d-flex d-justify-content-center">
             <a class="navbar-brand" href="/homepage.html"><img src="images/icon.png" alt="" width="75" height="75"></a>
@@ -48,10 +42,10 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/homepage.html">Home</a>
+                        <a class="nav-link" href="/homepage.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Add</a>
+                        <a class="nav-link" href="/addcontacts.html">Add</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="doLogout()">Signout</a>
@@ -62,50 +56,52 @@
         </div>
     </nav>
 
-    <div class="container">
+    <form class="container">
 
         <br>
-        <h2>Add A Contact</h2>
+        <h2>Edit Contact</h2>
 
         <br>
-        <p>Please add the person's contact information that you would like to add to your contact list</p><br>
+        <p>Please adjust the contact's information below</p><br>
 
         <h4>Contact Information</h4>
 
         <div class="row">
             <div class="col-6">
                 <label for="inputEmail4" class="form-label">First Name:</label>
-                <input id="input-firstname" type="text" class="form-control" placeholder="John" aria-label="First name">
+                <input id="input-firstname" type="text" class="form-control" placeholder="John" aria-label="First name" required>
             </div>
 
             <div class="col-6">
                 <label class="form-label">Last Name:</label>
-                <input id="input-lastname" type="text" class="form-control" placeholder="Doe" aria-label="Last name">
+                <input id="input-lastname" type="text" class="form-control" placeholder="Doe" aria-label="Last name" required>
             </div>
 
             <div class="col-12">
                 <label class="form-label">E-mail Address:</label>
-                <input id="input-email" type="text" placeholder="JohnDoe@gmail.com" name="email" class="form-control">
+                <input id="input-email" type="text" placeholder="JohnDoe@gmail.com" name="email" class="form-control" required>
             </div>
 
             <div class="col-12">
                 <label class="form-label">Phone Number:</label>
-                <input id="input-phone" type="text" placeholder="(407)-123-4567" name="phone" class="form-control">
+                <input id="input-phone" type="text" placeholder="(407)-123-4567" name="phone" class="form-control" required>
             </div>
 
             <div class="col-12">
                 <label class="form-label">Address:</label>
-                <input id="input-address" type="text" placeholder="42 Wallaby Way" name="phone" class="form-control">
+                <input id="input-address" type="text" placeholder="42 Wallaby Way" name="phone" class="form-control" required>
             </div>
 
             <div class="col-12 d-flex flex-row justify-content-between">
-                <button type="button" class="btn btn-warning d-none" onclick="generateRandomContact();" id="dev-random-button">Random Contact</button>
-                <span id="newContactResult"></span>
-                <button type="button" id="addContactButton" class="btn btn-primary" onclick="addContact();"> Create Contact
-                </button>
+                <a href="/homepage.html"><button class="btn btn-secondary">Cancel</button></a>
+                <p id="delete-error"></p>
+                <button class="btn btn-primary" onclick="doEditContact()">Update</button>
             </div>
+
         </div>
-    </div>
+
+    </form>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -119,8 +115,11 @@
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
 
     <script>
-        doAddDevCheck();
+        doGetContactForUpdate();
     </script>
+
+
+
 </body>
 
 </html>

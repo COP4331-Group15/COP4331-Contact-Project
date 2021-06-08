@@ -22,20 +22,13 @@
     <meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
-    <title>Add Contact</title>
+    <title>Add</title>
 
     <style>
         [class*="col-"] {
             padding: 1rem;
         }
     </style>
-
-    <script>
-        readCookie();
-        if (userData.userID == -1) {
-            window.location.href = "login.html";
-        }
-    </script>
 </head>
 
 <body>
@@ -51,7 +44,7 @@
                         <a class="nav-link" aria-current="page" href="/homepage.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Add</a>
+                        <a class="nav-link" href="/addcontacts.html">Add</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="doLogout()">Signout</a>
@@ -65,44 +58,34 @@
     <div class="container">
 
         <br>
-        <h2>Add A Contact</h2>
+        <h2>Contact Information</h2>
 
         <br>
-        <p>Please add the person's contact information that you would like to add to your contact list</p><br>
-
-        <h4>Contact Information</h4>
 
         <div class="row">
             <div class="col-6">
-                <label for="inputEmail4" class="form-label">First Name:</label>
-                <input id="input-firstname" type="text" class="form-control" placeholder="John" aria-label="First name">
+                <label class="form-label">First Name:</label>
+                <p id="contact-firstName"></p>
             </div>
 
             <div class="col-6">
                 <label class="form-label">Last Name:</label>
-                <input id="input-lastname" type="text" class="form-control" placeholder="Doe" aria-label="Last name">
+                <p id="contact-lastName"></p>
             </div>
 
             <div class="col-12">
                 <label class="form-label">E-mail Address:</label>
-                <input id="input-email" type="text" placeholder="JohnDoe@gmail.com" name="email" class="form-control">
+                <p id="contact-email"></p>
             </div>
 
             <div class="col-12">
                 <label class="form-label">Phone Number:</label>
-                <input id="input-phone" type="text" placeholder="(407)-123-4567" name="phone" class="form-control">
+                <p id="contact-phone"></p>
             </div>
 
             <div class="col-12">
                 <label class="form-label">Address:</label>
-                <input id="input-address" type="text" placeholder="42 Wallaby Way" name="phone" class="form-control">
-            </div>
-
-            <div class="col-12 d-flex flex-row justify-content-between">
-                <button type="button" class="btn btn-warning d-none" onclick="generateRandomContact();" id="dev-random-button">Random Contact</button>
-                <span id="newContactResult"></span>
-                <button type="button" id="addContactButton" class="btn btn-primary" onclick="addContact();"> Create Contact
-                </button>
+                <p id="contact-address"></p>
             </div>
         </div>
     </div>
@@ -117,9 +100,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
-
     <script>
-        doAddDevCheck();
+        doGetContact();
     </script>
 </body>
 
