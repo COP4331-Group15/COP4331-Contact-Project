@@ -32,7 +32,7 @@
 
 			// Returns that values found or an error if no values are found.
 			if ($searchCount == 0) {
-				returnWithError("No results found.");
+				returnWithInfo(json_encode(array()));
 			} else {
 				returnWithInfo(json_encode($searchResults));
 			}
