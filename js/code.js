@@ -241,6 +241,16 @@ function doGetRelevantContacts() {
 	// Get our search value
 	var query = document.getElementById("searchbox").value ?? "";
 
+	if(query.length <= 0) {
+		// We have no query. Display a "Begin typing to display results"
+		document.getElementById("results-table").innerHTML = `
+					<tr>
+						<td><h4>Begin typing to search contacts</h4></td>
+					</tr>
+				`;
+		return;
+	}
+
 	var payload = {
 		"query": query,
 		"userID": userData.userID ?? 0
