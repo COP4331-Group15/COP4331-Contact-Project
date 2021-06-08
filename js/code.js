@@ -17,6 +17,14 @@ function doSignup() {
 	var lastname = document.getElementById("lastname").value;
 	var login = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
+
+	if (firstname.length <= 0 ||
+		lastname.length <= 0 ||
+		login.length <= 0 ||
+		password.length <= 0) {
+		return false;
+	}
+
 	var hash = md5(password);
 
 
@@ -52,7 +60,6 @@ function doSignup() {
 	catch (err) {
 		//document.getElementById("loginResult").innerHTML = err.message;
 	}
-
 }
 
 function doLogin() {
@@ -234,6 +241,7 @@ function doDeleteContact() {
 		}
 	}
 
+	
 	xhr.send(JSON.stringify(payload));
 }
 
@@ -269,6 +277,11 @@ function doGetRelevantContacts() {
 			if (jsonResponse.error.length > 0 && jsonResponse.error !== "No results found.") {
 				// Error in the process.
 				console.log(jsonResponse.error);
+				document.getElementById("results-table").innerHTML = `
+					<tr>
+						<td><h2>An Error Occurred: ${jsonResponse.error}</h2></td>
+					</tr>
+				`;
 				return;
 			}
 
@@ -296,6 +309,7 @@ function doGetRelevantContacts() {
 		}
 	}
 
+	
 	xhr.send(JSON.stringify(payload));
 }
 
@@ -306,9 +320,9 @@ function formatContactResult(contact) {
 				<h3>${contact.LastName ?? "Contact"}, ${contact.FirstName ?? "Example"}</h3>
 				
 				<address>
-					<strong>📧: ${contact.Email ?? "ExampleContact@Example.com"}</strong>
-					<br>📱: ${contact.PhoneNumber ?? "+1 (407) 555-555"}
-					<br>🏠: ${contact.Address ?? "42 Wallaby Way Sydney"}
+					<strong><i class="fas fa-envelope"></i>: ${contact.Email ?? "ExampleContact@Example.com"}</strong>
+					<br><i class="fas fa-phone"></i>: ${contact.PhoneNumber ?? "+1 (407) 555-555"}
+					<br><i class="fas fa-home"></i>: ${contact.Address ?? "42 Wallaby Way Sydney"}
 				</address>
 					
 			</td>
@@ -370,7 +384,7 @@ function addContact() {
 			inputAddress.value = "";
 		}
 	}
-
+	
 	xhr.send(JSON.stringify(payload));
 }
 
@@ -483,7 +497,7 @@ function doEditContact() {
 	var phone = document.getElementById("input-phone").value;
 	var address = document.getElementById("input-address").value;
 
-	if(firstname.length <= 0 || lastname.length <= 0) {
+	if (firstname.length <= 0 || lastname.length <= 0) {
 		// Both are empty. User should fill these.
 		return false;
 	}
@@ -518,8 +532,9 @@ function doEditContact() {
 		}
 	}
 
+	
 	xhr.send(JSON.stringify(payload));
-	return true;
+
 }
 
 function doAddDevCheck() {
@@ -554,4 +569,26 @@ function generateRandomContact() {
 	}
 
 	xhr.send();
+}
+
+function bindForms() {
+	(function () {
+		'use strict'
+
+		// Fetch all the forms we want to apply custom Bootstrap validation styles to
+		var forms = document.querySelectorAll('.needs-validation')
+
+		// Loop over them and prevent submission
+		Array.prototype.slice.call(forms)
+			.forEach(function (form) {
+				form.addEventListener('submit', function (event) {
+					if (!form.checkValidity()) {
+						event.preventDefault()
+						event.stopPropagation()
+					}
+
+					form.classList.add('was-validated')
+				}, false)
+			})
+	})()
 }

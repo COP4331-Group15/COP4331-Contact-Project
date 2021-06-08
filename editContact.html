@@ -56,7 +56,7 @@
         </div>
     </nav>
 
-    <form onsubmit="doEditContact()" class="container">
+    <div class="container">
 
         <br>
         <h2>Edit Contact</h2>
@@ -66,41 +66,43 @@
 
         <h4>Contact Information</h4>
 
-        <div class="row">
+        <form class="row needs-validation" onsubmit="doEditContact(); return false" novalidate>
             <div class="col-6">
                 <label for="inputEmail4" class="form-label">First Name:</label>
                 <input id="input-firstname" type="text" class="form-control" placeholder="John" aria-label="First name" required>
+                <div class="invalid-feedback">Contacts must have a first name</div>
             </div>
 
             <div class="col-6">
                 <label class="form-label">Last Name:</label>
                 <input id="input-lastname" type="text" class="form-control" placeholder="Doe" aria-label="Last name" required>
+                <div class="invalid-feedback">Contacts must have a last name</div>
             </div>
 
             <div class="col-12">
                 <label class="form-label">E-mail Address:</label>
-                <input id="input-email" type="text" placeholder="JohnDoe@gmail.com" name="email" class="form-control" required>
+                <input id="input-email" type="email" placeholder="JohnDoe@gmail.com" name="email" class="form-control">
             </div>
 
             <div class="col-12">
                 <label class="form-label">Phone Number:</label>
-                <input id="input-phone" type="text" placeholder="(407)-123-4567" name="phone" class="form-control" required>
+                <input id="input-phone" type="tel" placeholder="(407)-123-4567" name="phone" class="form-control">
             </div>
 
             <div class="col-12">
                 <label class="form-label">Address:</label>
-                <input id="input-address" type="text" placeholder="42 Wallaby Way" name="phone" class="form-control" required>
+                <input id="input-address" type="text" placeholder="42 Wallaby Way" name="phone" class="form-control">
             </div>
 
             <div class="col-12 d-flex flex-row justify-content-between">
-                <a href="/homepage.html"><button class="btn btn-secondary">Cancel</button></a>
-                <p id="delete-error"></p>
-                <button class="btn btn-primary" onclick="doEditContact()">Update</button>
+                <button class="btn btn-secondary" onclick="location.href='/homepage.html'">Cancel</button></a>
+                <p id="delete-error" class="text-danger"></p>
+                <button class="btn btn-primary" type="submit">Update</button>
             </div>
 
-        </div>
+        </form>
 
-    </form>
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -115,11 +117,9 @@
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
 
     <script>
-        doGetContactForUpdate();
+        bindForms();
     </script>
-
-
-
+    
 </body>
 
 </html>
