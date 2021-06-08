@@ -461,6 +461,10 @@ function doGetContactForUpdate() {
 
 
 function doEditContact() {
+
+	if(element.required = true){
+
+
 	// 1. Get the ID of the contact to update
 	var queryString = window.location.search;
 	var urlParams = new URLSearchParams(queryString);
@@ -504,6 +508,7 @@ function doEditContact() {
 	}
 
 	xhr.send(JSON.stringify(payload));
+}
 }
 
 function doAddDevCheck() {
