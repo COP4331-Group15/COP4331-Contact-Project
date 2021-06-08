@@ -387,7 +387,7 @@ function addContact() {
 			inputPhone.value = "";
 			inputAddress.value = "";
 
-			document.getElementById("addElementForm").classList.remove("was-validated");
+			document.getElementById("addcontactform").classList.remove("was-validated");
 		}
 	}
 	
