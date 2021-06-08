@@ -483,6 +483,11 @@ function doEditContact() {
 	var phone = document.getElementById("input-phone").value;
 	var address = document.getElementById("input-address").value;
 
+	if(firstname.length <= 0 || lastname.length <= 0) {
+		// Both are empty. User should fill these.
+		return false;
+	}
+
 	var payload = {
 		"ID": targetID,
 		"FirstName": firstname,
@@ -514,7 +519,7 @@ function doEditContact() {
 	}
 
 	xhr.send(JSON.stringify(payload));
-
+	return true;
 }
 
 function doAddDevCheck() {
