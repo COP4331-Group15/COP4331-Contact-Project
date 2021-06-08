@@ -266,7 +266,7 @@ function doGetRelevantContacts() {
 		if (this.readyState == 4 && this.status == 200) {
 			var jsonResponse = JSON.parse(this.responseText);
 
-			if (jsonResponse.error.length > 0) {
+			if (jsonResponse.error.length > 0 && jsonResponse.error !== "No results found.") {
 				// Error in the process.
 				console.log(jsonResponse.error);
 				return;
