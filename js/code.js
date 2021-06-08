@@ -362,7 +362,7 @@ function addContact() {
 			}
 
 			// The process succeeded. Inform the user, clear input
-			document.getElementById("newContactResult").innerText = "Successfully added contact " + jsonResponse.ID;
+			document.getElementById("newContactResult").innerText = "Successfully created a new contact for " + inputFirstName.value + " " + inputLastName.value;
 			inputFirstName.value = "";
 			inputLastName.value = "";
 			inputEmail.value = "";
