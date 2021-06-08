@@ -349,6 +349,10 @@ function addContact() {
 	const inputPhone = document.getElementById("input-phone");
 	const inputAddress = document.getElementById("input-address");
 
+	if(inputFirstName.length <= 0 || inputLastName.length <= 0) {
+		return false;
+	}
+
 	var payload = {
 		"FirstName": inputFirstName.value,
 		"LastName": inputLastName.value,
