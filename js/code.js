@@ -179,7 +179,7 @@ function doGetContactForDelete() {
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	
+
 	xhr.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
 			var jsonResponse = JSON.parse(this.responseText);
@@ -220,10 +220,10 @@ function doDeleteContact() {
 	xhr.open("POST", url, true);
 
 	xhr.onreadystatechange = function () {
-		if(this.readyState == 4 && this.status == 200) {
+		if (this.readyState == 4 && this.status == 200) {
 			var jsonResponse = JSON.parse(this.responseText);
 
-			if(jsonResponse.error.length > 0) {
+			if (jsonResponse.error.length > 0) {
 				// Something went wrong
 				document.getElementById("delete-error").innerText = jsonResponse.error;
 				return;
@@ -241,7 +241,7 @@ function doGetRelevantContacts() {
 	// Get our search value
 	var query = document.getElementById("searchbox").value ?? "";
 
-	if(query.length <= 0) {
+	if (query.length <= 0) {
 		// We have no query. Display a "Begin typing to display results"
 		document.getElementById("results-table").innerHTML = `
 					<tr>
@@ -446,7 +446,7 @@ function doGetContactForUpdate() {
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	
+
 	xhr.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
 			var jsonResponse = JSON.parse(this.responseText);
@@ -471,10 +471,6 @@ function doGetContactForUpdate() {
 
 
 function doEditContact() {
-
-	if(element.required = true){
-
-
 	// 1. Get the ID of the contact to update
 	var queryString = window.location.search;
 	var urlParams = new URLSearchParams(queryString);
@@ -503,10 +499,10 @@ function doEditContact() {
 	xhr.open("POST", url, true);
 
 	xhr.onreadystatechange = function () {
-		if(this.readyState == 4 && this.status == 200) {
+		if (this.readyState == 4 && this.status == 200) {
 			var jsonResponse = JSON.parse(this.responseText);
 
-			if(jsonResponse.error.length > 0) {
+			if (jsonResponse.error.length > 0) {
 				// Something went wrong
 				document.getElementById("delete-error").innerText = jsonResponse.error;
 				return;
@@ -518,14 +514,14 @@ function doEditContact() {
 	}
 
 	xhr.send(JSON.stringify(payload));
-}
+
 }
 
 function doAddDevCheck() {
 	// If we have "dev=true" in the URL
 	var queryString = window.location.search;
 	var urlParams = new URLSearchParams(queryString);
-	if(urlParams.has("dev")) {
+	if (urlParams.has("dev")) {
 		// Make the random button appear
 		document.getElementById("dev-random-button").classList.remove("d-none");
 	}
@@ -538,8 +534,8 @@ function generateRandomContact() {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", namefakeurl, true);
 
-	xhr.onreadystatechange = function() {
-		if(this.readyState == 4 && this.status == 200) {
+	xhr.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
 			var jsonResponse = JSON.parse(this.responseText);
 
 			var userData = jsonResponse.results[0];
