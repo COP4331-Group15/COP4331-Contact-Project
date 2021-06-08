@@ -349,7 +349,7 @@ function addContact() {
 	const inputPhone = document.getElementById("input-phone");
 	const inputAddress = document.getElementById("input-address");
 
-	if(inputFirstName.length <= 0 || inputLastName.length <= 0) {
+	if(inputFirstName.value.length <= 0 || inputLastName.value.length <= 0) {
 		return false;
 	}
 
